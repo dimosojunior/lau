@@ -1,0 +1,217 @@
+{% load crispy_forms_tags %}
+<div style="background-color: lightblue;color: black;font-weight: bold;">
+
+  
+      
+    <form action="" method="post">
+      {% csrf_token %}
+
+      <div class="row">
+
+        <div class="col-md-2">
+
+
+           {{form.name|as_crispy_field}}
+          
+        </div>
+
+         
+        
+         <div class="col-md-2">
+
+          {{form.phone_number|as_crispy_field}}
+        </div>
+
+         <div class="col-md-2">
+           {{form.invoice_date|as_crispy_field}}
+
+        </div>
+
+
+      
+      </div><!--mwisho wa row ya field za juu--->
+
+
+
+<div class="row">
+
+  <div class="col-md-2">
+    {{form.line_one|as_crispy_field}}
+    {{form.line_one_description|as_crispy_field}}
+    {{form.line_one_quantity|as_crispy_field}}
+    {{form.line_one_unit_price|as_crispy_field}}
+    {{form.line_one_total_price|as_crispy_field}}
+
+    
+  </div>
+
+    <div class="col-md-2">
+    {{form.line_two|as_crispy_field}}
+    {{form.line_two_description|as_crispy_field}}
+    {{form.line_two_quantity|as_crispy_field}}
+    {{form.line_two_unit_price|as_crispy_field}}
+    {{form.line_two_total_price|as_crispy_field}}
+
+    
+  </div>
+
+    <div class="col-md-2">
+    {{form.line_three|as_crispy_field}}
+    {{form.line_three_description|as_crispy_field}}
+    {{form.line_three_quantity|as_crispy_field}}
+    {{form.line_three_unit_price|as_crispy_field}}
+    {{form.line_three_total_price|as_crispy_field}}
+
+    
+  </div>
+
+    <div class="col-md-2">
+    {{form.line_four|as_crispy_field}}
+    {{form.line_four_description|as_crispy_field}}
+    {{form.line_four_quantity|as_crispy_field}}
+    {{form.line_four_unit_price|as_crispy_field}}
+    {{form.line_four_total_price|as_crispy_field}}
+
+    
+  </div>
+
+    <div class="col-md-2">
+    {{form.line_five|as_crispy_field}}
+    {{form.line_five_description|as_crispy_field}}
+    {{form.line_five_quantity|as_crispy_field}}
+    {{form.line_five_unit_price|as_crispy_field}}
+    {{form.line_five_total_price|as_crispy_field}}
+
+    
+  </div>
+
+
+   <div class="col-md-2">
+    <span>Recent Invoice</span>
+<span>{{total_dozi}}</span>
+<br>
+{% for x in queryset %}
+<div class="card" style="font-weight: bold;color: blue;">
+  <div class="card-header">{{x.name}}</div>
+  <div class="card-body">{{x.invoice_date}}</div>
+
+</div>
+<div class="card-header">$ {{x.total}}</div><br>
+{% endfor %}
+    
+  </div>
+
+
+
+</div><!--mwisho wa row kubwa---->
+
+
+  
+
+</div>
+
+
+<div style="background-color: yellow;">
+
+
+<div class="row">
+
+  <div class="col-md-2">
+    {{form.line_six|as_crispy_field}}
+    {{form.line_six_description|as_crispy_field}}
+    {{form.line_six_quantity|as_crispy_field}}
+    {{form.line_six_unit_price|as_crispy_field}}
+    {{form.line_six_total_price|as_crispy_field}}
+
+    
+  </div>
+
+    <div class="col-md-2">
+    {{form.line_seven|as_crispy_field}}
+    {{form.line_seven_description|as_crispy_field}}
+    {{form.line_seven_quantity|as_crispy_field}}
+    {{form.line_seven_unit_price|as_crispy_field}}
+    {{form.line_seven_total_price|as_crispy_field}}
+
+    
+  </div>
+
+    <div class="col-md-2">
+    {{form.line_eight|as_crispy_field}}
+    {{form.line_eight_description|as_crispy_field}}
+    {{form.line_eight_quantity|as_crispy_field}}
+    {{form.line_eight_unit_price|as_crispy_field}}
+    {{form.line_eight_total_price|as_crispy_field}}
+
+    
+  </div>
+
+    <div class="col-md-2">
+    {{form.line_nine|as_crispy_field}}
+    {{form.line_nine_description|as_crispy_field}}
+    {{form.line_nine_quantity|as_crispy_field}}
+    {{form.line_nine_unit_price|as_crispy_field}}
+    {{form.line_nine_total_price|as_crispy_field}}
+
+    
+  </div>
+
+    <div class="col-md-2">
+    {{form.line_ten|as_crispy_field}}
+    {{form.line_ten_description|as_crispy_field}}
+    {{form.line_ten_quantity|as_crispy_field}}
+    {{form.line_ten_unit_price|as_crispy_field}}
+    {{form.line_ten_total_price|as_crispy_field}}
+
+    
+  </div>
+
+
+</div><!--mwisho wa row kubwa---->
+
+
+</div>
+
+
+<div class="row">
+
+      <div class="col-md-3">
+            {{form.total|as_crispy_field}}
+
+          </div>
+
+          <div class="col-md-3">
+            {{form.paid|as_crispy_field}}
+
+          </div>
+
+          <div class="col-md-3">
+            {{form.huduma|as_crispy_field}}
+
+          </div>
+  
+
+</div>
+
+
+
+
+ <button id="more-line" type="button" >Show / Hide More Lines</button>
+     <div style="text-align: center;">
+      
+  <button type="submit" class="btn btn-primary btn-md my-0 p">
+      Submit
+
+  </button>
+
+</div>
+
+
+
+
+
+
+
+</form>
+
+</div>

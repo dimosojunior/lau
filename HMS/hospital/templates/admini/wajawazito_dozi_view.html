@@ -1,0 +1,332 @@
+{% extends 'hospital/base.html' %}
+{% load static %}
+{% block title %}Amount collected {% endblock %}
+
+
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+
+  
+ <!---jqeury css link---->
+     <link rel="stylesheet" href="{% static 'hospital/jqueryui/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'hospital/jqueryui/jquery-ui.structure.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hospital/jqueryui/jquery-ui.structure.css' %}">
+    <link rel="stylesheet" href="{% static 'hospital/jqueryui/jquery-ui.theme.min.css' %}">
+     <link rel="stylesheet" href="{% static 'hospital/jqueryui/jquery-ui.theme.css' %}">
+
+ 
+</head>
+<body>
+  
+   
+
+
+  <style>
+      body{
+  background: linear-gradient(90deg, #ff00bf9b 0%, #c6ff6932 43%, #0099ff9d 100%);
+}
+
+    .small-img{
+      width: 70px;
+      height: 70px;
+    }
+    td{
+        font-size: 20px;
+        font-family: bold;
+    }
+  </style>
+  <main class="mt-5 pt-4">
+    <div class="container" style="margin-top: 4cm;">
+        {% if messages %}
+      {% for message in messages %}
+      
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{message}}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+      {% endfor %}
+    {% endif %}
+
+
+
+
+
+
+<h3>PATIENT DETAILS FOR {{object.name}}</h3>
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+    <th>Medicine Name</th>
+     <th>Quantity</th>
+    <th>Total Price</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      {% if object.line_one != None %}
+
+    <tr>
+          <td>{{object.line_one}}</td>
+          
+      <td>{{object.line_one_quantity}}</td>
+      <td>{{object.line_one_total_price}}</td>
+            
+    </tr>
+    
+    {% endif %}
+    
+    {% if object.line_two != None %}
+
+
+    <tr>
+      
+
+      <td>{{object.line_two}}</td>
+
+      {% if object.line_two_quantity != 0 %}
+      <td>{{object.line_two_quantity}}</td>
+      {% endif %}
+
+      {% if object.line_two_total_price != 0 %}
+      <td>{{object.line_two_total_price}}</td>
+      {% endif %}
+            
+    </tr>
+    {% endif %}
+    
+
+    {% if object.line_three != None %}
+
+
+    <tr>
+      
+
+      <td>{{object.line_three}}</td>
+      {% if object.line_three_quantity != 0 %}
+      <td>{{object.line_three_quantity}}</td>
+      {% endif %}
+              {% if object.line_three_total_price != 0 %}
+      <td>{{object.line_three_total_price}}</td>
+      {% endif %}
+            
+    </tr>
+
+    {% endif %}
+
+
+      {% if object.line_four != None %}
+
+
+    <tr>
+      
+
+      <td>{{object.line_four}}</td>
+      {% if object.line_four_quantity != 0 %}
+      <td>{{object.line_four_quantity}}</td>
+      {% endif %}
+              {% if object.line_four_total_price != 0 %}
+      <td>{{object.line_four_total_price}}</td>
+      {% endif %}
+            
+    </tr>
+
+    {% endif %}
+
+      {% if object.line_five != None %}
+
+
+    <tr>
+      
+
+      <td>{{object.line_five}}</td>
+      {% if object.line_five_quantity != 0 %}
+      <td>{{object.line_five_quantity}}</td>
+      {% endif %}
+              {% if object.line_five_total_price != 0 %}
+      <td>{{object.line_five_total_price}}</td>
+      {% endif %}
+            
+    </tr>
+
+    {% endif %}
+
+
+      {% if object.line_six != None %}
+
+
+    <tr>
+      
+
+      <td>{{object.line_six}}</td>
+      {% if object.line_six_quantity != 0 %}
+      <td>{{object.line_six_quantity}}</td>
+      {% endif %}
+              {% if object.line_six_total_price != 0 %}
+      <td>{{object.line_six_total_price}}</td>
+      {% endif %}
+            
+    </tr>
+
+    {% endif %}
+
+
+      {% if object.line_seven != None %}
+
+
+    <tr>
+      
+
+      <td>{{object.line_seven}}</td>
+      {% if object.line_seven_quantity != 0 %}
+      <td>{{object.line_seven_quantity}}</td>
+      {% endif %}
+              {% if object.line_seven_total_price != 0 %}
+      <td>{{object.line_seven_total_price}}</td>
+      {% endif %}
+            
+    </tr>
+
+    {% endif %}
+
+
+      {% if object.line_eight != None %}
+
+
+    <tr>
+      
+
+      <td>{{object.line_eight}}</td>
+      {% if object.line_eight_quantity != 0 %}
+      <td>{{object.line_eight_quantity}}</td>
+      {% endif %}
+              {% if object.line_eight_total_price != 0 %}
+      <td>{{object.line_eight_total_price}}</td>
+      {% endif %}
+            
+    </tr>
+
+    {% endif %}
+
+
+      {% if object.line_nine != None %}
+
+
+    <tr>
+      
+
+      <td>{{object.line_nine}}</td>
+      {% if object.line_nine_quantity != 0 %}
+      <td>{{object.line_nine_quantity}}</td>
+      {% endif %}
+              {% if object.line_nine_total_price != 0 %}
+      <td>{{object.line_nine_total_price}}</td>
+      {% endif %}
+            
+    </tr>
+
+    {% endif %}
+
+
+      {% if object.line_ten != None %}
+
+
+    <tr>
+      
+
+      <td>{{object.line_ten}}</td>
+      {% if object.line_ten_quantity != 0 %}
+      <td>{{object.line_ten_quantity}}</td>
+      {% endif %}
+              {% if object.line_ten_total_price != 0 %}
+      <td>{{object.line_ten_total_price}}</td>
+      {% endif %}
+            
+    </tr>
+
+    {% endif %}
+
+  </tbody>
+</table>
+
+
+<h4>TOTAL AMOUNT: Tsh.{{object.total}}/=</h4>
+
+
+  <h4>PAID = <span style="color: red;font-weight: bold;">{{object.paid}}</span></h4>
+
+
+
+<p>{{object.time_stamp}}</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+<!--jquery code for autocomplete javascriptcode---->
+<script src="{% static 'hospital/jqueryui/external/jquery/jquery.js' %}" type="text/javascript"></script>
+<script src="{% static 'hospital/jqueryui/jquery-ui.js' %}" type="text/javascript"></script>
+
+
+
+
+
+ 
+{% if messages %}
+{% for m in messages %}
+<script >
+  
+  swal.fire({
+    "title": "added successs",
+    "text": "{{m}}",
+    "icon":"successs"
+  })
+</script>
+
+{% endfor %}
+
+{% endif %}
+
+</body>
+</html>
+
+{% endblock %}

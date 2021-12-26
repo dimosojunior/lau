@@ -1,0 +1,43 @@
+
+{% extends 'hospital/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Add {% endblock %}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div style="margin-top: 5cm;">
+
+
+       {% if messages %}
+      {% for message in messages %}
+      
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{message}}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+      {% endfor %}
+    {% endif %}
+
+
+
+<h1>Thanks for making an email</h1>
+
+<p>Appointment.confirmation</p>
+
+<h1>{{fname}}</h1>
+
+<p>the date for appointment is set to {{date}}</p>
+
+</div>
+</body>
+</html>
+
+{% endblock %}

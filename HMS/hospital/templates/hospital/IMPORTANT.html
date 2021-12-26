@@ -1,0 +1,1069 @@
+watoto list page
+
+
+
+
+
+{% extends 'hospital/base.html' %}
+{% load static %}
+{% block title %}All Childrens {% endblock %}
+
+
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+
+  
+ <!---jqeury css link---->
+     <link rel="stylesheet" href="{% static 'hospital/jqueryui/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'hospital/jqueryui/jquery-ui.structure.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hospital/jqueryui/jquery-ui.structure.css' %}">
+    <link rel="stylesheet" href="{% static 'hospital/jqueryui/jquery-ui.theme.min.css' %}">
+     <link rel="stylesheet" href="{% static 'hospital/jqueryui/jquery-ui.theme.css' %}">
+
+ 
+</head>
+<body>
+  
+   
+
+
+  <style>
+    .small-img{
+      width: 70px;
+      height: 70px;
+    }
+    td{
+        font-size: 20px;
+        font-family: bold;
+    }
+  </style>
+  <main class="mt-5 pt-4">
+    <div class="container" style="margin-top: 4cm;">
+        {% if messages %}
+      {% for message in messages %}
+      
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{message}}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+      {% endfor %}
+    {% endif %}
+
+
+
+
+<div class="container " style="margin-top: 5cm;">
+
+  <a href="{% url 'watoto' %}" class="btn btn-primary btn-md my-0 p" type="submit">Add Childrens</a>
+
+
+</div>
+
+
+<div>
+  <center>
+  
+
+
+<H1>UNDER FIVE CHILDRENS</H1>
+
+
+
+
+
+
+      <section class="mb-4">
+     <div class="table-responsive text-nowrap">
+          
+          <table class="table">
+            <thead>
+              <tr>
+                
+                <th scope="col">First Name</th>
+                <th scope="col">Middle Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Time</th>
+                <th scope="col">Patient Number</th>
+                
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for object in watoto %}
+                
+            <tr>
+                <td>{{object.fname}}</td>
+                <td>{{object.sname}}</td>
+                <td>{{object.tname}}</td>
+                <td>{{object.created}}</td>
+                <td>{{object.reg_no}}</td>
+
+                
+                <td>
+
+
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">View</button>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: blue;">Patient Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Patient Name:</label><br>
+            <button type="button" class="btn btn-primary" style="width: 8cm;font-size: 25px;">{{object.fname}} {{object.sname}} {{object.tname}}</button>
+          </div>
+
+           <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Residence:</label><br>
+            <button type="button" class="btn btn-primary" style="width: 8cm;font-size: 20px;">{{object.residence}} </button>
+          </div>
+
+           <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Age:</label><br>
+            <button type="button" class="btn btn-primary" style="width: 8cm;font-size: 20px;">{{object.year}} </button>
+          </div>
+
+           <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Patient Number:</label><br>
+            <button type="button" class="btn btn-primary" style="width: 8cm;font-size: 20px;">{{object.reg_no}} </button>
+          </div>
+         
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+                </td>
+
+
+
+
+
+
+
+
+
+
+                  <td> <a href="{% url 'update_watoto' object.pk %}" class="btn btn-primary btn-md my-0 p" type="submit">Update</td>
+               
+               
+                 
+                                    <td> 
+               
+
+
+       
+
+        
+
+            <form action="{% url 'delete_watoto' object.pk %}" method="POST">    
+     {% csrf_token %}  
+            
+            <input type="submit" class="btn btn-danger" value="Delete">
+    
+                        
+          </form>         
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  </td>
+                  
+            </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+     </div>
+      </section>
+
+      
+    </center>
+  </div>
+
+
+
+    </div>
+  </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--jquery code for autocomplete javascriptcode---->
+<script src="{% static 'hospital/jqueryui/external/jquery/jquery.js' %}" type="text/javascript"></script>
+<script src="{% static 'hospital/jqueryui/jquery-ui.js' %}" type="text/javascript"></script>
+
+
+
+
+
+ 
+{% if messages %}
+{% for m in messages %}
+<script >
+  
+  swal.fire({
+    "title": "added successs",
+    "text": "{{m}}",
+    "icon":"successs"
+  })
+</script>
+
+{% endfor %}
+
+{% endif %}
+
+</body>
+</html>
+
+{% endblock %}
+
+mwisho hapa
+
+
+
+
+
+
+'''
+def dozi_update_quantity(request, pk):
+    querySet = Dozi.objects.get(id=pk)
+    form = DoziUpdateForm(instance=querySet)
+    if request.method == "POST":
+        form = DoziUpdateForm(request.POST, instance=querySet)
+        if form.is_valid():
+            form.save()
+            return redirect('single_list_detail',pk)
+    
+    context = {
+        "form":form
+        
+    }
+    return render(request, 'hospital/add_dozi.html', context)
+'''
+
+
+
+        
+        #messages.add_message(request, messages.SUCCESS, f"{date}")
+
+        #return HttpResponseRedirect(request.path)
+    
+'''
+def add_quantity_medicine1(request, id):
+
+    object = Dozi.objects.get(id=id)
+    queryset = Dozi.objects.order_by('-id')[:2]
+    querySet = Dozi.objects.get(id=id)
+
+    form = AddForm(request.POST or None)
+    #if request.method == "POST":
+    if form.is_valid():
+        form.save()
+        line1 = request.POST.get('line1')
+        lineone = request.POST.get('line_one_quantity')
+        lineonee = request.POST.get('line_one_unit_price')
+        lineoneee = request.POST.get('line_one_total_price')
+        appointment_id = request.POST.get('appointment-id')
+        appointment = Dozi.objects.get(id=appointment_id)
+        appointment.accepted_line_one = True
+        appointment.accepted = True
+        appointment.line_one_quantity = lineone
+        appointment.line_one_unit_price = lineonee
+        appointment.line_one_total_price = lineoneee
+        appointment.save()
+
+
+        
+        messages.add_message(request, messages.SUCCESS, f"{object.line_one} has accepted")
+
+        return HttpResponseRedirect(request.path)        
+    
+    
+    context = {
+        "object":object,
+        "form":form,
+        "querySet":querySet,
+        "queryset":queryset
+
+
+        
+    }
+    return render(request, 'hospital/single_list_detail.html', context)
+
+def add_quantity_medicine2(request, id):
+
+    object = Dozi.objects.get(id=id)
+    queryset = Dozi.objects.order_by('-id')[:2]
+    querySet = Dozi.objects.get(id=id)
+
+    form = AddForm(request.POST or None)
+    #if request.method == "POST":
+    if form.is_valid():
+        form.save()
+        
+
+
+        line2 = request.POST.get('line2')
+        linetwo = request.POST.get('line_two_quantity')
+        linetwoe = request.POST.get('line_two_unit_price')
+        linetwoee = request.POST.get('line_two_total_price')
+        line2_id = request.POST.get('line2-id')
+        line2 = Dozi.objects.get(id=line2_id)
+        line2.accepted_line_two = True
+        line2.accepted = True
+        line2.line_two_quantity = linetwo
+        line2.line_two_unit_price = linetwoe
+        line2.line_two_total_price = linetwoee
+        
+        #appointment.accepted_date = datetime.datetime.now()
+        line2.save()
+        messages.add_message(request, messages.SUCCESS, f"{object.line_two} has accepted")
+
+        return HttpResponseRedirect(request.path)
+    context = {
+    "object":object,
+    "form":form,
+    "querySet":querySet,
+    "queryset":queryset
+    }
+    
+    return render(request, 'hospital/single_list_detail.html', context)
+
+def add_quantity_medicine3(request, id):
+
+    object = Dozi.objects.get(id=id)
+    queryset = Dozi.objects.order_by('-id')[:2]
+    querySet = Dozi.objects.get(id=id)
+
+    form = AddForm(request.POST or None)
+    #if request.method == "POST":
+    if form.is_valid():
+        form.save()
+        
+
+
+        line3 = request.POST.get('line3')
+        linethree = request.POST.get('line_three_quantity')
+        linethreee = request.POST.get('line_three_unit_price')
+        linethreeee = request.POST.get('line_three_total_price')
+        line3_id = request.POST.get('line3-id')
+        line3 = Dozi.objects.get(id=line3_id)
+        line3.accepted_line_three = True
+        line3.line_three_quantity = linethree
+        line3.line_three_unit_price = linethreee
+        line3.line_three_total_price = linethreeee
+        
+        #appointment.accepted_date = datetime.datetime.now()
+        line3.save()
+        messages.add_message(request, messages.SUCCESS, f"{object.line_three} has accepted")
+
+        return HttpResponseRedirect(request.path)
+    context = {
+    "object":object,
+    "form":form,
+    "querySet":querySet,
+    "queryset":queryset
+    }
+    
+    return render(request, 'hospital/single_list_detail.html', context)
+
+
+def add_quantity_medicine4(request, id):
+
+    object = Dozi.objects.get(id=id)
+    queryset = Dozi.objects.order_by('-id')[:2]
+    querySet = Dozi.objects.get(id=id)
+
+    form = AddForm(request.POST or None)
+    #if request.method == "POST":
+    if form.is_valid():
+        form.save()
+        
+
+
+        line4 = request.POST.get('line4')
+        linefour = request.POST.get('line_four_quantity')
+        linefoure = request.POST.get('line_four_unit_price')
+        linefouree = request.POST.get('line_four_total_price')
+        line4_id = request.POST.get('line4-id')
+        line4 = Dozi.objects.get(id=line4_id)
+        line4.accepted_line_four = True
+        line4.line_four_quantity = linefour
+        line4.line_four_unit_price = linefoure
+        line4.line_four_total_price = linefouree
+        
+        #appointment.accepted_date = datetime.datetime.now()
+        line4.save()
+        messages.add_message(request, messages.SUCCESS, f"{object.line_four} has accepted")
+
+        return HttpResponseRedirect(request.path)
+    context = {
+    "object":object,
+    "form":form,
+    "querySet":querySet,
+    "queryset":queryset
+    }
+    
+    return render(request, 'hospital/single_list_detail.html', context)
+
+
+def add_quantity_medicine5(request, id):
+
+    object = Dozi.objects.get(id=id)
+    queryset = Dozi.objects.order_by('-id')[:2]
+    querySet = Dozi.objects.get(id=id)
+
+    form = AddForm(request.POST or None)
+    #if request.method == "POST":
+    if form.is_valid():
+        form.save()
+        
+
+
+        line5 = request.POST.get('line5')
+        linefive = request.POST.get('line_five_quantity')
+        linefivee = request.POST.get('line_five_unit_price')
+        linefiveee = request.POST.get('line_five_total_price')
+        line5_id = request.POST.get('line5-id')
+        line5 = Dozi.objects.get(id=line5_id)
+        line5.accepted_line_five = True
+        line5.line_five_quantity = linefive
+        line5.line_five_unit_price = linefivee
+        line5.line_five_total_price = linefiveee
+        
+        #appointment.accepted_date = datetime.datetime.now()
+        line5.save()
+        messages.add_message(request, messages.SUCCESS, f"{object.line_five} has accepted")
+
+        return HttpResponseRedirect(request.path)
+    context = {
+    "object":object,
+    "form":form,
+    "querySet":querySet,
+    "queryset":queryset
+    }
+    
+    return render(request, 'hospital/single_list_detail.html', context)
+
+
+def add_quantity_medicine6(request, id):
+
+    object = Dozi.objects.get(id=id)
+    queryset = Dozi.objects.order_by('-id')[:2]
+    querySet = Dozi.objects.get(id=id)
+
+    form = AddForm(request.POST or None)
+    #if request.method == "POST":
+    if form.is_valid():
+        form.save()
+        
+
+
+        line6 = request.POST.get('line6')
+        linesix = request.POST.get('line_six_quantity')
+        linesixe = request.POST.get('line_six_unit_price')
+        linesixee = request.POST.get('line_six_total_price')
+        line6_id = request.POST.get('line6-id')
+        line6 = Dozi.objects.get(id=line6_id)
+        line6.accepted_line_six = True
+        line6.line_six_quantity = linesix
+        line6.line_six_unit_price = linesixe
+        line6.line_six_total_price = linesixee
+        
+        #appointment.accepted_date = datetime.datetime.now()
+        line6.save()
+        messages.add_message(request, messages.SUCCESS, f"{object.line_six} has accepted")
+
+        return HttpResponseRedirect(request.path)
+    context = {
+    "object":object,
+    "form":form,
+    "querySet":querySet,
+    "queryset":queryset
+    }
+    
+    return render(request, 'hospital/single_list_detail.html', context)
+
+
+def add_quantity_medicine7(request, id):
+
+    object = Dozi.objects.get(id=id)
+    queryset = Dozi.objects.order_by('-id')[:2]
+    querySet = Dozi.objects.get(id=id)
+
+    form = AddForm(request.POST or None)
+    #if request.method == "POST":
+    if form.is_valid():
+        form.save()
+        
+
+
+        line7 = request.POST.get('line7')
+        lineseven = request.POST.get('line_seven_quantity')
+        linesevene = request.POST.get('line_seven_unit_price')
+        linesevenee = request.POST.get('line_seven_total_price')
+        line7_id = request.POST.get('line7-id')
+        line7 = Dozi.objects.get(id=line7_id)
+        line7.accepted_line_seven = True
+        line7.line_seven_quantity = lineseven
+        line7.line_seven_unit_price = linesevene
+        line7.line_seven_total_price = linesevenee
+        
+        #appointment.accepted_date = datetime.datetime.now()
+        line7.save()
+        messages.add_message(request, messages.SUCCESS, f"{object.line_seven} has accepted")
+
+        return HttpResponseRedirect(request.path)
+    context = {
+    "object":object,
+    "form":form,
+    "querySet":querySet,
+    "queryset":queryset
+    }
+    
+    return render(request, 'hospital/single_list_detail.html', context)
+
+
+def add_quantity_medicine8(request, id):
+
+    object = Dozi.objects.get(id=id)
+    queryset = Dozi.objects.order_by('-id')[:2]
+    querySet = Dozi.objects.get(id=id)
+
+    form = AddForm(request.POST or None)
+    #if request.method == "POST":
+    if form.is_valid():
+        form.save()
+        
+
+
+        line8 = request.POST.get('line8')
+        lineeight = request.POST.get('line_eight_quantity')
+        lineeighte = request.POST.get('line_eight_unit_price')
+        lineeightee = request.POST.get('line_eight_total_price')
+        line8_id = request.POST.get('line8-id')
+        line8 = Dozi.objects.get(id=line8_id)
+        line8.accepted_line_eight = True
+        line8.line_eight_quantity = lineeight
+        line8.line_eight_unit_price = lineeighte
+        line8.line_eight_total_price = lineeightee
+        
+        #appointment.accepted_date = datetime.datetime.now()
+        line8.save()
+        messages.add_message(request, messages.SUCCESS, f"{object.line_eight} has accepted")
+
+        return HttpResponseRedirect(request.path)
+    context = {
+    "object":object,
+    "form":form,
+    "querySet":querySet,
+    "queryset":queryset
+    }
+    
+    return render(request, 'hospital/single_list_detail.html', context)
+
+
+def add_quantity_medicine9(request, id):
+
+    object = Dozi.objects.get(id=id)
+    queryset = Dozi.objects.order_by('-id')[:2]
+    querySet = Dozi.objects.get(id=id)
+
+    form = AddForm(request.POST or None)
+    #if request.method == "POST":
+    if form.is_valid():
+        form.save()
+        
+
+
+        line9 = request.POST.get('line9')
+        linenine = request.POST.get('line_nine_quantity')
+        lineninee = request.POST.get('line_nine_unit_price')
+        linenineee = request.POST.get('line_nine_total_price')
+        line9_id = request.POST.get('line9-id')
+        line9 = Dozi.objects.get(id=line9_id)
+        line9.accepted_line_nine = True
+        line9.line_nine_quantity = linenine
+        line9.line_nine_unit_price = lineninee
+        line9.line_nine_total_price = linenineee
+        
+        #appointment.accepted_date = datetime.datetime.now()
+        line9.save()
+        messages.add_message(request, messages.SUCCESS, f"{object.line_nine} has accepted")
+
+        return HttpResponseRedirect(request.path)
+    context = {
+    "object":object,
+    "form":form,
+    "querySet":querySet,
+    "queryset":queryset
+    }
+    
+    return render(request, 'hospital/single_list_detail.html', context)
+
+    
+def add_quantity_medicine10(request, id):
+
+    object = Dozi.objects.get(id=id)
+    queryset = Dozi.objects.order_by('-id')[:2]
+    querySet = Dozi.objects.get(id=id)
+
+    form = AddForm(request.POST or None)
+    #if request.method == "POST":
+    if form.is_valid():
+        form.save()
+        
+
+
+        line10 = request.POST.get('line10')
+        lineten = request.POST.get('line_ten_quantity')
+        linetene = request.POST.get('line_ten_unit_price')
+        linetenee = request.POST.get('line_ten_total_price')
+        line10_id = request.POST.get('line10-id')
+        line10 = Dozi.objects.get(id=line10_id)
+        line10.accepted_line_ten = True
+        line10.line_ten_quantity = lineten
+        line10.line_ten_unit_price = linetene
+        line10.line_ten_total_price = linetenee
+        
+        #appointment.accepted_date = datetime.datetime.now()
+        line10.save()
+        messages.add_message(request, messages.SUCCESS, f"{object.line_ten} has accepted")
+
+        return HttpResponseRedirect(request.path)
+    context = {
+    "object":object,
+    "form":form,
+    "querySet":querySet,
+    "queryset":queryset
+    }
+    
+    return render(request, 'hospital/single_list_detail.html', context)
+
+
+
+def accept_payment(request, id):
+    object = Dozi.objects.get(id=id)
+    queryset = Dozi.objects.order_by('-id')[:2]
+    querySet = Dozi.objects.get(id=id)
+
+    form = AddForm(request.POST or None)
+    #if request.method == "POST":
+    if form.is_valid():
+        form.save()
+        payment = request.POST.get('payment')
+        total = request.POST.get('total')
+
+        lineone = request.POST.get('line_one_quantity')
+        lineonee = request.POST.get('line_one_unit_price')
+        lineoneee = request.POST.get('line_one_total_price')
+
+        linetwo = request.POST.get('line_two_quantity')
+        linetwoe = request.POST.get('line_two_unit_price')
+        linetwoee = request.POST.get('line_two_total_price')
+
+        linethree = request.POST.get('line_three_quantity')
+        linethreee = request.POST.get('line_three_unit_price')
+        linethreeee = request.POST.get('line_three_total_price')
+
+        linefour = request.POST.get('line_four_quantity')
+        linefoure = request.POST.get('line_four_unit_price')
+        linefouree = request.POST.get('line_four_total_price')
+
+        lineone = request.POST.get('line_one_quantity')
+        lineonee = request.POST.get('line_one_unit_price')
+        lineoneee = request.POST.get('line_one_total_price')
+
+        linefive = request.POST.get('line_five_quantity')
+        linefivee = request.POST.get('line_five_unit_price')
+        linefiveee = request.POST.get('line_five_total_price')
+
+        linesix = request.POST.get('line_six_quantity')
+        linesixe = request.POST.get('line_six_unit_price')
+        linesixee = request.POST.get('line_six_total_price')
+
+        lineseven = request.POST.get('line_seven_quantity')
+        linesevene = request.POST.get('line_seven_unit_price')
+        linesevenee = request.POST.get('line_seven_total_price')
+
+        lineeight = request.POST.get('line_eight_quantity')
+        lineeighte = request.POST.get('line_eight_unit_price')
+        lineeightee = request.POST.get('line_eight_total_price')
+
+        linenine = request.POST.get('line_nine_quantity')
+        lineninee = request.POST.get('line_nine_unit_price')
+        linenineee = request.POST.get('line_nine_total_price')
+
+        lineten = request.POST.get('line_ten_quantity')
+        linetene = request.POST.get('line_ten_unit_price')
+        linetenee = request.POST.get('line_ten_total_price')
+
+        payment_id = request.POST.get('payment-id')
+        payment = Dozi.objects.get(id=payment_id)
+        payment.paid = True
+
+
+        payment.line_one_quantity = lineone
+        payment.line_one_unit_price = lineonee
+        payment.line_one_total_price = lineoneee
+
+        payment.line_two_quantity = linetwo
+        payment.line_two_unit_price = linetwoe
+        payment.line_two_total_price = linetwoee
+
+        payment.line_three_quantity = linethree
+        payment.line_three_unit_price = linethreee
+        payment.line_three_total_price = linethreeee
+
+        payment.line_four_quantity = linefour
+        payment.line_four_unit_price = linefoure
+        payment.line_four_total_price = linefouree
+
+        payment.line_five_quantity = linefive
+        payment.line_five_unit_price = linefivee
+        payment.line_five_total_price = linefiveee
+
+        payment.line_six_quantity = linesix
+        payment.line_six_unit_price = linesixe
+        payment.line_six_total_price = linesixee
+
+        payment.line_seven_quantity = lineseven
+        payment.line_seven_unit_price = linesevene
+        payment.line_seven_total_price = linesevenee
+
+        payment.line_eight_quantity = lineeight
+        payment.line_eight_unit_price = lineeighte
+        payment.line_eight_total_price = lineeightee
+
+        payment.line_nine_quantity = linenine
+        payment.line_nine_unit_price = lineninee
+        payment.line_nine_total_price = linenineee
+
+        payment.line_ten_quantity = lineten
+        payment.line_ten_unit_price = linetene
+        payment.line_ten_total_price = linetenee
+
+
+
+        payment.total = total
+
+        payment.save()
+        messages.add_message(request, messages.SUCCESS, f"{object.total} has accepted")
+
+        return HttpResponseRedirect(request.path)
+
+
+
+
+    
+    context = {
+    "object":object,
+    "form":form,
+    "querySet":querySet,
+    "queryset":queryset
+    }
+    
+    return render(request, 'hospital/single_list_detail.html', context)
+
+'''
+        
+ 
+    '''
+    #ya kutengeneza invoice kodi zake
+    if form['generate_invoice'].value() == True:
+        instance = queryset
+        data_file = instance
+        num_of_invoices = len(queryset)
+        message = str(num_of_invoices) + " invoices successfully generated."
+        messages.success(request, message)
+
+        def import_data(data_file):
+            invoice_data = data_file
+            for row in invoice_data:
+                invoice_type = row.invoice_type
+                invoice_number = row.invoice_number
+                invoice_date = row.invoice_date
+                name = row.name
+                phone_number = row.phone_number
+
+                line_one = row.line_one
+                line_one_quantity = row.line_one_quantity
+                line_one_unit_price = row.line_one_unit_price
+                line_one_total_price = row.line_one_total_price
+
+                line_two = row.line_two
+                line_two_quantity = row.line_two_quantity
+                line_two_unit_price = row.line_two_unit_price
+                line_two_total_price = row.line_two_total_price
+
+                line_three = row.line_three
+                line_three_quantity = row.line_three_quantity
+                line_three_unit_price = row.line_three_unit_price
+                line_three_total_price = row.line_three_total_price
+
+                line_four = row.line_four
+                line_four_quantity = row.line_four_quantity
+                line_four_unit_price = row.line_four_unit_price
+                line_four_total_price = row.line_four_total_price
+
+                line_five = row.line_five
+                line_five_quantity = row.line_five_quantity
+                line_five_unit_price = row.line_five_unit_price
+                line_five_total_price = row.line_five_total_price
+
+                line_six = row.line_six
+                line_six_quantity = row.line_six_quantity
+                line_six_unit_price = row.line_six_unit_price
+                line_six_total_price = row.line_six_total_price
+
+                line_seven = row.line_seven
+                line_seven_quantity = row.line_seven_quantity
+                line_seven_unit_price = row.line_seven_unit_price
+                line_seven_total_price = row.line_seven_total_price
+
+                line_eight = row.line_eight
+                line_eight_quantity = row.line_eight_quantity
+                line_eight_unit_price = row.line_eight_unit_price
+                line_eight_total_price = row.line_eight_total_price
+
+                line_nine = row.line_nine
+                line_nine_quantity = row.line_nine_quantity
+                line_nine_unit_price = row.line_nine_unit_price
+                line_nine_total_price = row.line_nine_total_price
+
+                line_ten = row.line_ten
+                line_ten_quantity = row.line_ten_quantity
+                line_ten_unit_price = row.line_ten_unit_price
+                line_ten_total_price = row.line_ten_total_price
+
+                total = row.total
+                pdf_file_name = str(invoice_number) + '_' + str(name) + '.pdf'
+                generate_invoice(str(name), str(invoice_number), 
+                    str(line_one), str(line_one_quantity), str(line_one_unit_price), 
+                    str(line_one_total_price), str(line_two), str(line_two_quantity),
+                    str(line_two_unit_price), str(line_two_total_price), str(line_three),
+                    str(line_three_quantity), str(line_three_unit_price),
+                    str(line_three_total_price), str(line_four), str(line_four_quantity),
+                    str(line_four_unit_price), str(line_four_total_price),  str(line_five),
+                    str(line_five_quantity), str(line_five_unit_price),
+                    str(line_five_total_price), str(line_six), str(line_six_quantity),
+                    str(line_six_unit_price), str(line_six_total_price), str(line_seven),
+                    str(line_seven_quantity), str(line_seven_unit_price),
+                    str(line_seven_total_price), str(line_eight), str(line_eight_quantity),
+                    str(line_eight_unit_price), str(line_eight_total_price), str(line_nine),
+                    str(line_nine_quantity), str(line_nine_unit_price), str(line_nine_total_price), 
+                    str(line_ten), str(line_ten_quantity), str(line_ten_unit_price),
+                    str(line_ten_total_price), str(total), str(phone_number), str(invoice_date),
+                    str(invoice_type), pdf_file_name)
+
+        def generate_invoice(name, invoice_number, 
+                line_one, line_one_quantity, line_one_unit_price, line_one_total_price, 
+                line_two, line_two_quantity, line_two_unit_price, line_two_total_price, 
+                line_three, line_three_quantity, line_three_unit_price, line_three_total_price, 
+                line_four, line_four_quantity, line_four_unit_price, line_four_total_price, 
+                line_five, line_five_quantity, line_five_unit_price, line_five_total_price, 
+                line_six, line_six_quantity, line_six_unit_price, line_six_total_price, 
+                line_seven, line_seven_quantity, line_seven_unit_price, line_seven_total_price, 
+                line_eight, line_eight_quantity, line_eight_unit_price, line_eight_total_price, 
+                line_nine, line_nine_quantity, line_nine_unit_price, line_nine_total_price, 
+                line_ten, line_ten_quantity, line_ten_unit_price, line_ten_total_price, 
+                total, phone_number, invoice_date, invoice_type, pdf_file_name):
+            c = canvas.Canvas(pdf_file_name)
+
+            # image of seal
+            logo = 'logoarb.png'
+            c.drawImage(logo, 50, 700, width=500, height=120)
+
+            c.setFont('Helvetica', 12, leading=None)
+            # if invoice_type == 'Receipt':
+            #   c.drawCentredString(400, 660, "Receipt Number #:")
+            # elif invoice_type == 'Proforma Invoice':
+            #   c.drawCentredString(400, 660, "Proforma Invoice #:")
+            # else:
+            c.drawCentredString(400, 660, str(invoice_type) + ':')
+            c.setFont('Helvetica', 12, leading=None)
+            invoice_number_string = str('0000' + invoice_number)
+            c.drawCentredString(490, 660, invoice_number_string)
+
+
+            c.setFont('Helvetica', 12, leading=None)
+            c.drawCentredString(409, 640, "Date:")
+            c.setFont('Helvetica', 12, leading=None)
+            c.drawCentredString(492, 641, invoice_date)
+
+
+            c.setFont('Helvetica', 12, leading=None)
+            c.drawCentredString(397, 620, "Amount:")
+            c.setFont('Helvetica-Bold', 12, leading=None)
+            c.drawCentredString(484, 622, 'D'+total)
+
+
+            c.setFont('Helvetica', 12, leading=None)
+            c.drawCentredString(80, 660, "To:")
+            c.setFont('Helvetica', 12, leading=None)
+            c.drawCentredString(150, 660, name)
+
+            c.setFont('Helvetica', 12, leading=None)
+            c.drawCentredString(98, 640, "Phone #:")
+            c.setFont('Helvetica', 12, leading=None)
+            c.drawCentredString(150, 640, phone_number)     
+
+            c.setFont('Helvetica-Bold', 14, leading=None)
+            c.drawCentredString(310, 580, str(invoice_type))
+            c.drawCentredString(110, 560, "Particulars:")
+            c.drawCentredString(295, 510, "__________________________________________________________")
+            c.drawCentredString(295, 480, "__________________________________________________________")
+            c.drawCentredString(295, 450, "__________________________________________________________")
+            c.drawCentredString(295, 420, "__________________________________________________________")
+            c.drawCentredString(295, 390, "__________________________________________________________")
+            c.drawCentredString(295, 360, "__________________________________________________________")
+            c.drawCentredString(295, 330, "__________________________________________________________")
+            c.drawCentredString(295, 300, "__________________________________________________________")
+            c.drawCentredString(295, 270, "__________________________________________________________")
+            c.drawCentredString(295, 240, "__________________________________________________________")
+            c.drawCentredString(295, 210, "__________________________________________________________")
+
+            c.setFont('Helvetica-Bold', 12, leading=None)
+            c.drawCentredString(110, 520, 'ITEMS')     
+            c.drawCentredString(220, 520, 'QUANTITY')     
+            c.drawCentredString(330, 520, 'UNIT PRICE')     
+            c.drawCentredString(450, 520, 'LINE TOTAL')  
+
+
+            c.setFont('Helvetica', 12, leading=None)
+            c.drawCentredString(110, 490, line_one)     
+            c.drawCentredString(220, 490, line_one_quantity)     
+            c.drawCentredString(330, 490, line_one_unit_price)     
+            c.drawCentredString(450, 490, line_one_total_price)     
+
+            if line_two != '':
+                c.setFont('Helvetica', 12, leading=None)
+                c.drawCentredString(110, 460, line_two)     
+                c.drawCentredString(220, 460, line_two_quantity)     
+                c.drawCentredString(330, 460, line_two_unit_price)     
+                c.drawCentredString(450, 460, line_two_total_price)     
+
+            if line_three != '':
+                c.setFont('Helvetica', 12, leading=None)
+                c.drawCentredString(110, 430, line_three)     
+                c.drawCentredString(220, 430, line_three_quantity)     
+                c.drawCentredString(330, 430, line_three_unit_price)     
+                c.drawCentredString(450, 430, line_three_total_price)     
+
+            if line_four != '':
+                c.setFont('Helvetica', 12, leading=None)
+                c.drawCentredString(110, 400, line_four)     
+                c.drawCentredString(220, 400, line_four_quantity)     
+                c.drawCentredString(330, 400, line_four_unit_price)     
+                c.drawCentredString(450, 400, line_four_total_price)     
+
+            if line_five != '':
+                c.setFont('Helvetica', 12, leading=None)
+                c.drawCentredString(110, 370, line_five)     
+                c.drawCentredString(220, 370, line_five_quantity)     
+                c.drawCentredString(330, 370, line_five_unit_price)     
+                c.drawCentredString(450, 370, line_five_total_price)     
+
+            if line_six != '':
+                c.setFont('Helvetica', 12, leading=None)
+                c.drawCentredString(110, 340, line_six)     
+                c.drawCentredString(220, 340, line_six_quantity)     
+                c.drawCentredString(330, 340, line_six_unit_price)     
+                c.drawCentredString(450, 340, line_six_total_price)     
+
+            if line_seven != '':
+                c.setFont('Helvetica', 12, leading=None)
+                c.drawCentredString(110, 310, line_seven)     
+                c.drawCentredString(220, 310, line_seven_quantity)     
+                c.drawCentredString(330, 310, line_seven_unit_price)     
+                c.drawCentredString(450, 310, line_seven_total_price)     
+
+            if line_eight != '':
+                c.setFont('Helvetica', 12, leading=None)
+                c.drawCentredString(110, 280, line_eight)     
+                c.drawCentredString(220, 280, line_eight_quantity)     
+                c.drawCentredString(330, 280, line_eight_unit_price)     
+                c.drawCentredString(450, 280, line_eight_total_price)     
+
+            if line_nine != '':
+                c.setFont('Helvetica', 12, leading=None)
+                c.drawCentredString(110, 250, line_nine)     
+                c.drawCentredString(220, 250, line_nine_quantity)     
+                c.drawCentredString(330, 250, line_nine_unit_price)     
+                c.drawCentredString(450, 250, line_nine_total_price)     
+
+            if line_ten != '':
+                c.setFont('Helvetica', 12, leading=None)
+                c.drawCentredString(110, 220, line_ten)     
+                c.drawCentredString(220, 220, line_ten_quantity)     
+                c.drawCentredString(330, 220, line_ten_unit_price)     
+                c.drawCentredString(450, 220, line_ten_total_price)     
+
+
+
+            # TOTAL
+            c.setFont('Helvetica-Bold', 20, leading=None)
+            c.drawCentredString(400, 140, "TOTAL:")
+            c.setFont('Helvetica-Bold', 20, leading=None)
+            c.drawCentredString(484, 140, 'D'+total) 
+
+
+            # SIGN
+            c.setFont('Helvetica-Bold', 12, leading=None)
+            c.drawCentredString(150, 140, "Signed:__________________")
+            c.setFont('Helvetica-Bold', 12, leading=None)
+            c.drawCentredString(170, 120, 'Manager') 
+
+
+            c.showPage()
+            
+            c.save()
+
+        import_data(data_file)
+    #mwisho hapa
+    '''

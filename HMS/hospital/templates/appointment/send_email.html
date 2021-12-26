@@ -1,0 +1,134 @@
+
+{% extends 'hospital/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Add {% endblock %}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+   <style type="text/css">
+    body{
+      background: linear-gradient(90deg, #ff00bf9b 0%, #c6ff6932 43%, #0099ff9d 100%);
+    }
+    input{
+           padding: 10px;
+           width: 8cm;
+      border: 3 px solid blue;
+      border-radius: 15px;
+      margin-bottom: 20px;
+    }
+    input[type=submit]{
+      padding: 10px;
+      width: 6cm;
+      margin-top: 1cm;
+    }
+    .textarea{
+      width: 12cm;
+      height: 6cm;
+    }
+  </style>
+</head>
+<body>
+
+
+     <div style="margin-top: 5cm;">
+
+
+<h1 style="text-align: center;font-family: bold;margin-bottom: 1cm;">SEND EMAIL</h1>
+
+  {% if messages %}
+      {% for message in messages %}
+      
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{message}}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+      {% endfor %}
+    {% endif %}
+
+    <form action="" method="post">
+      {% csrf_token %}
+     
+      
+    <div class="row">
+
+      <div class="col-md-12">
+
+        <div class="row">
+
+         
+
+          <div class="col-md-3">
+            <label>fname</label><br>
+<input type="text" name="fname"><br>
+
+          </div>
+
+          <div class="col-md-3">
+            <label>sname</label><br>
+<input type="text" name="sname"><br>
+
+          </div>
+
+          <div class="col-md-3">
+            <label>Email</label><br>
+<input type="email" name="email"><br>
+
+
+          </div>
+
+           <div class="col-md-3">
+            <label>Phone</label><br>
+<input type="text" name="phone"><br>
+
+          </div> 
+
+
+        </div><!---mwisho wa inner row-->
+
+        <div class="row"><!--mwanzo wa row ya descrption na comment--->
+
+      
+<center>
+          
+            <label>Message</label><br>
+<textarea name="message" class="textarea"></textarea><br>
+
+          
+</center>
+        </div><!--mwisho wa row ya descrption na comment--->
+
+      </div>
+
+    </div>
+    </div>
+     <div style="text-align: center;">
+      
+  <input type="submit" name="" value="Send" class="btn-primary">
+     
+
+
+  </button>
+
+</div>
+
+  </form>
+
+    
+
+
+
+
+</div>
+
+
+</div>
+</body>
+</html>
+
+{% endblock %}

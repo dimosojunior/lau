@@ -1,0 +1,117 @@
+
+{% extends 'hospital/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Add {% endblock %}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+<style type="text/css">
+  
+    .card-body{
+       background: linear-gradient(90deg, #ff00bf9b 0%, #c6ff6932 43%, #0099ff9d 100%);
+       font-weight: bold;
+       color: black;
+  
+}
+.card-header{
+  background-color: green;
+  color: black;
+  font-weight: bold;
+  font-family: bold;
+}
+</style>
+
+</head>
+<body>
+<div style="margin-top: 5cm;">
+
+	
+
+
+  {% if messages %}
+      {% for message in messages %}
+      
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{message}}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+      {% endfor %}
+    {% endif %}
+
+
+
+<h1 style="text-align: center;font-family: bold;">PATIENTS APPOINTMENTS</h1>
+
+
+
+
+<div class="container">
+
+  <div class="row">
+    {% for app in appointments %}
+
+    <div class="col-md-4">
+      
+
+
+{% if app.accepted == False %}
+
+               
+<div class="card">
+
+  <div class="card-header"> <h4>{{app.fname}} {{app.lname}}</h4></div>
+   <div class="card-header"><h4>{{app.phone}}</h4></div>
+
+   <div class="card-body">
+    <p> {{app.email}}</p>
+    <h4>{{app.sent_tarehe|date:"d"}} {{app.sent_tarehe|date:"M"}} {{app.sent_tarehe|date:"Y"}}</h4>
+      <p>{{app.message}}</p>
+     
+   </div>
+  
+
+</div>
+
+
+
+
+
+
+<form method="POST" action="{% url 'manage_appointment' %}">
+  {% csrf_token %}
+<div class="form-group">
+  <input type="date" name="date" placeholder="dd-mm-yyyy " value="" style="border: 2px solid red;border-radius: 5px;padding: 7px;" required="">
+
+  <input type="" name="appointment-id" hidden="true" value="{{app.id}}">
+
+
+  <input type="submit" name="" value="accept appointment" class="btn-primary" style="margin-top: 10px;">
+  
+</div>
+</form>
+{% endif %}
+
+
+    </div><!--mwisho wa column 4--->
+    
+{% endfor %}
+  </div><!--mwisho wa row--->
+  
+
+</div><!---container--->
+
+
+
+
+</div>
+</body>
+</html>
+
+{% endblock %}

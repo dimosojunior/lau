@@ -1,0 +1,960 @@
+
+{% extends 'hospital/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Patient Detail {% endblock %}
+
+
+{% block content %}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <style>
+    .input{
+      padding: 15px;
+      border-radius: 15px;
+      border: 3px solid blue;
+      margin: 10px;
+      font-size: 20px;
+      color: red;
+      font-weight: bold;
+      font-family: bold;
+    }
+    #tag{
+      width: 10cm;
+      font-size: 25px;
+      color: blue;
+      margin-bottom: 1cm;
+      font-weight: bold;
+      font-family: bold;
+
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" style="margin-top: 8cm;">
+    {% if messages %}
+      {% for message in messages %}
+      
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{message}}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+      {% endfor %}
+    {% endif %}
+
+
+
+
+
+{% if querySet.accepted == False %}
+<a href="{% url 'available_medicines' %}" class="btn btn-primary btn-md my-0 p" type="submit">Check Medical Price</a>
+
+     <!--     #HIZI CODE NI KWA AJILI YA BUTTONYA POINT OF SALES--->
+<button type="button" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#line2">
+  Point of Sales
+</button>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="line2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="width: 25cm;">
+      <div class="modal-header" style="width: 25cm;">
+        <h5 class="modal-title" id="staticBackdropLabel"> {{querySet.name}} </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="width: 25cm;">
+    
+
+
+    
+
+<div style="background-color: lightblue;color: black;font-weight: bold;">
+
+  
+      
+    <form action="{% url 'add_quantity_wazee' querySet.id %}" method="post">
+      {% csrf_token %}
+
+      <div class="row">
+
+        <div class="col-md-2">
+
+
+           {{form.name|as_crispy_field}}
+          
+        </div>
+
+         
+        
+       
+
+
+      
+      </div><!--mwisho wa row ya field za juu--->
+
+
+
+<div class="row">
+
+  <div class="col-md-2">
+    {{form.line_one|as_crispy_field}}
+    {{form.line_one_description|as_crispy_field}}
+    {{form.line_one_quantity|as_crispy_field}}
+    {{form.line_one_unit_price|as_crispy_field}}
+    {{form.line_one_total_price|as_crispy_field}}
+
+    
+  </div>
+
+    <div class="col-md-2">
+    {{form.line_two|as_crispy_field}}
+    {{form.line_two_description|as_crispy_field}}
+    {{form.line_two_quantity|as_crispy_field}}
+    {{form.line_two_unit_price|as_crispy_field}}
+    {{form.line_two_total_price|as_crispy_field}}
+
+    
+  </div>
+
+
+    <div class="col-md-2">
+      
+    {{form.line_three|as_crispy_field}}
+    {{form.line_three_description|as_crispy_field}}
+    {{form.line_three_quantity|as_crispy_field}}
+    {{form.line_three_unit_price|as_crispy_field}}
+    {{form.line_three_total_price|as_crispy_field}}
+
+    
+  </div>
+
+    <div class="col-md-2">
+    {{form.line_four|as_crispy_field}}
+    {{form.line_four_description|as_crispy_field}}
+    {{form.line_four_quantity|as_crispy_field}}
+    {{form.line_four_unit_price|as_crispy_field}}
+    {{form.line_four_total_price|as_crispy_field}}
+
+    
+  </div>
+
+    <div class="col-md-2">
+    {{form.line_five|as_crispy_field}}
+    {{form.line_five_description|as_crispy_field}}
+    {{form.line_five_quantity|as_crispy_field}}
+    {{form.line_five_unit_price|as_crispy_field}}
+    {{form.line_five_total_price|as_crispy_field}}
+
+    
+  </div>
+
+
+
+
+
+</div><!--mwisho wa row kubwa---->
+
+
+  
+
+</div>
+
+
+<div style="background-color: yellow;">
+
+
+<div class="row">
+
+  <div class="col-md-2">
+    {{form.line_six|as_crispy_field}}
+    {{form.line_six_description|as_crispy_field}}
+    {{form.line_six_quantity|as_crispy_field}}
+    {{form.line_six_unit_price|as_crispy_field}}
+    {{form.line_six_total_price|as_crispy_field}}
+
+    
+  </div>
+
+    <div class="col-md-2">
+    {{form.line_seven|as_crispy_field}}
+    {{form.line_seven_description|as_crispy_field}}
+    {{form.line_seven_quantity|as_crispy_field}}
+    {{form.line_seven_unit_price|as_crispy_field}}
+    {{form.line_seven_total_price|as_crispy_field}}
+
+    
+  </div>
+
+    <div class="col-md-2">
+    {{form.line_eight|as_crispy_field}}
+    {{form.line_eight_description|as_crispy_field}}
+    {{form.line_eight_quantity|as_crispy_field}}
+    {{form.line_eight_unit_price|as_crispy_field}}
+    {{form.line_eight_total_price|as_crispy_field}}
+
+    
+  </div>
+
+    <div class="col-md-2">
+    {{form.line_nine|as_crispy_field}}
+    {{form.line_nine_description|as_crispy_field}}
+    {{form.line_nine_quantity|as_crispy_field}}
+    {{form.line_nine_unit_price|as_crispy_field}}
+    {{form.line_nine_total_price|as_crispy_field}}
+
+    
+  </div>
+
+    <div class="col-md-2">
+    {{form.line_ten|as_crispy_field}}
+    {{form.line_ten_description|as_crispy_field}}
+    {{form.line_ten_quantity|as_crispy_field}}
+    {{form.line_ten_unit_price|as_crispy_field}}
+    {{form.line_ten_total_price|as_crispy_field}}
+
+    
+  </div>
+
+
+</div><!--mwisho wa row kubwa---->
+
+
+</div>
+
+
+<div class="row">
+
+      <div class="col-md-3">
+            {{form.total|as_crispy_field}}
+
+          </div>
+
+
+            <div class="col-md-3">
+            {{form.accepted|as_crispy_field}}
+
+          </div>
+
+       
+  
+
+</div>
+
+
+
+
+ <button id="more-line" type="button" >Show / Hide More Lines</button>
+     <div style="text-align: center;">
+      
+  <button type="submit" class="btn btn-primary btn-md my-0 p">
+      Submit
+
+  </button>
+
+</div>
+
+
+
+
+
+
+
+</form>
+
+</div>
+
+
+
+      </div>
+    
+
+
+          </div>
+  </div>
+</div><!---mwisho wa modal---->
+
+<!--ZINAISHIA HAPA HIZO CODE----->
+
+
+
+  <!--HIZI NICODE KWA AJILI YA KUACCEPT DAWA AMBZO VIEW YAKE NI ACCEPT MEDICINE-->  
+
+
+
+
+
+
+
+
+
+
+
+
+<center><h1>DAWA</h1></center>
+
+
+
+   <form action="{% url 'accept_medicine_wazee' querySet.id %}" method="post">
+      {% csrf_token %}
+
+      <center>
+        <h1>{{form.name|as_crispy_field}}</h1>
+      </center>
+
+      
+
+<table class="table">
+        <thead class="thead-light">
+          <tr>
+           
+            <th scope="col">Medicine Name</th>
+            <th scope="col"> Description</th>
+           
+            
+
+           
+           
+            
+          </tr>
+        </thead>
+
+
+
+        <tbody>
+
+
+    
+      <!---mwanzo wa row --->
+      
+          
+ <div class="row">
+  {% if querySet.line_one != None %}
+  
+
+<tr>
+  <td><h1 style="font-weight: bold;font-family: bold;">{{querySet.line_one}}</h1></td>
+  <td><h1 style="font-weight: bold;font-family: bold;">{{querySet.line_one_description}}</h1></td>
+ 
+  
+</tr>
+
+
+{% endif %}
+
+</div><!--mwisho wa row--->
+
+     <!---mwanzo wa row --->
+          
+ <div class="row">
+{% if querySet.line_two != None %}
+
+<tr>
+  <td><h1 style="font-weight: bold;font-family: bold;">{{querySet.line_two}}</h1></td>
+  <td><h1 style="font-weight: bold;font-family: bold;">{{querySet.line_two_description}}</h1></td>
+  
+  
+</tr>
+
+{% endif %}
+
+</div><!--mwisho wa row--->
+
+
+     <!---mwanzo wa row --->
+          
+ <div class="row">
+  {% if querySet.line_three != None %}
+
+<tr>
+  <td><h1 style="font-weight: bold;font-family: bold;">{{querySet.line_three}}</h1></td>
+  <td><h1 style="font-weight: bold;font-family: bold;">{{querySet.line_three_description}}</h1></td>
+ 
+</tr>
+{% endif %}
+
+
+</div><!--mwisho wa row--->
+
+     <!---mwanzo wa row --->
+          
+ <div class="row">
+  {% if querySet.line_four != None %}
+
+<tr>
+
+  <td><h1 style="font-weight: bold;font-family: bold;">{{querySet.line_four}}</h1></td>
+  <td><h1 style="font-weight: bold;font-family: bold;">{{querySet.line_four_description}}</h1></td>
+  
+</tr>
+{% endif %}
+
+
+</div><!--mwisho wa row--->
+
+
+
+     <!---mwanzo wa row --->
+          
+ <div class="row">
+{% if querySet.line_five != None %}
+<tr>
+  <td><h1 style="font-weight: bold;font-family: bold;">{{querySet.line_five}}</h1></td>
+  <td><h1 style="font-weight: bold;font-family: bold;">{{querySet.line_five_description}}</h1></td>
+ 
+</tr>
+
+{% endif %}
+
+</div><!--mwisho wa row--->
+
+
+     <!---mwanzo wa row --->
+          
+ <div class="row">
+  {% if querySet.line_six != None %}
+
+<tr>
+  <td><h1 style="font-weight: bold;font-family: bold;">{{querySet.line_six}}</h1></td>
+  <td><h1 style="font-weight: bold;font-family: bold;">{{querySet.line_six_description}}</h1></td>
+
+</tr>
+
+{% endif %}
+
+</div><!--mwisho wa row--->
+
+
+    <!---mwanzo wa row --->
+          
+ <div class="row">
+  {% if querySet.line_seven != None %}
+
+<tr>
+  <td><h1 style="font-weight: bold;font-family: bold;">{{querySet.line_seven}}</h1></td>
+  <td><h1 style="font-weight: bold;font-family: bold;">{{querySet.line_seven_description}}</h1></td>
+ 
+</tr>
+
+{% endif %}
+
+</div><!--mwisho wa row--->
+
+
+
+    <!---mwanzo wa row --->
+          
+ <div class="row">
+  {% if querySet.line_eight != None %}
+
+<tr>
+  <td><h1 style="font-weight: bold;font-family: bold;">{{querySet.line_eight}}</h1></td>
+  <td><h1 style="font-weight: bold;font-family: bold;">{{querySet.line_eight_description}}</h1></td>
+ 
+</tr>
+
+{% endif %}
+
+</div><!--mwisho wa row--->
+
+
+    <!---mwanzo wa row --->
+          
+ <div class="row">
+  {% if querySet.line_nine != None %}
+
+<tr>
+  <td><h1 style="font-weight: bold;font-family: bold;">{{querySet.line_nine}}</h1></td>
+  <td><h1 style="font-weight: bold;font-family: bold;">{{querySet.line_nine_description}}</h1></td>
+ 
+</tr>
+
+{% endif %}
+
+</div><!--mwisho wa row--->
+
+
+
+    <!---mwanzo wa row --->
+          
+ <div class="row">
+  {% if querySet.line_ten != None %}
+
+<tr>
+  <td><h1 style="font-weight: bold;font-family: bold;">{{querySet.line_ten}}</h1></td>
+  <td><h1 style="font-weight: bold;font-family: bold;">{{querySet.line_ten_description}}</h1></td>
+ 
+</tr>
+
+{% endif %}
+
+</div><!--mwisho wa row--->
+
+
+
+</tbody>
+
+
+
+
+
+
+        </table>
+
+
+
+
+        <div class="row">
+
+     
+
+           
+<button type="button" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#accept">
+  Accept Medicine
+</button>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="accept" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel"> {{object.line_one}} </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+    <h3>put a tick to accept this payment!!</h3><br>
+
+
+     <div class="col-md-3">
+            {{form.total|as_crispy_field}}
+
+          </div>
+
+          <div class="col-md-3">
+            {{form.paid|as_crispy_field}}
+
+          </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+
+          <div class="form-group">
+                 
+                    
+           <!--      <input type="date" name="date" class="form-control" >--->
+                 
+                </div>
+                <input hidden=true name="line2-id" value="{{object.id}}">
+
+                    
+           <button type="submit" class="btn btn-primary btn-md my-0 p" name="line2" >
+              Accept
+
+
+               </button>
+
+
+      </div>
+    </div>
+  </div>
+</div><!---mwisho wa modal---->
+
+
+
+
+
+
+
+
+
+</div><!--mwisho wa row ya kudisplay total and paid--->
+
+
+
+</form>
+
+
+
+
+
+
+
+
+
+{% endif %}
+
+
+
+{% if querySet.accepted == True %}
+
+
+
+
+          
+<button type="button" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#line2" style="margin-bottom: 1cm;">
+  Point of Sales
+</button>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="line2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="width: 25cm;">
+      <div class="modal-header" style="width: 25cm;">
+        <h5 class="modal-title" id="staticBackdropLabel"> {{querySet.name}} </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="width: 25cm;">
+    
+
+
+    
+  
+
+<div style="background-color: lightblue;color: black;font-weight: bold;">
+
+  
+      
+    <form action="{% url 'add_quantity_wazee' querySet.id %}" method="post">
+      {% csrf_token %}
+
+      <div class="row">
+
+        <div class="col-md-2">
+
+
+           {{form.name|as_crispy_field}}
+          
+        </div>
+
+         
+        
+       
+
+
+      
+      </div><!--mwisho wa row ya field za juu--->
+
+
+
+<div class="row">
+
+  <div class="col-md-2">
+    {{form.line_one|as_crispy_field}}
+    {{form.line_one_description|as_crispy_field}}
+    {{form.line_one_quantity|as_crispy_field}}
+    {{form.line_one_unit_price|as_crispy_field}}
+    {{form.line_one_total_price|as_crispy_field}}
+
+    
+  </div>
+
+    <div class="col-md-2">
+    {{form.line_two|as_crispy_field}}
+    {{form.line_two_description|as_crispy_field}}
+    {{form.line_two_quantity|as_crispy_field}}
+    {{form.line_two_unit_price|as_crispy_field}}
+    {{form.line_two_total_price|as_crispy_field}}
+
+    
+  </div>
+
+
+    <div class="col-md-2">
+      
+    {{form.line_three|as_crispy_field}}
+    {{form.line_three_description|as_crispy_field}}
+    {{form.line_three_quantity|as_crispy_field}}
+    {{form.line_three_unit_price|as_crispy_field}}
+    {{form.line_three_total_price|as_crispy_field}}
+
+    
+  </div>
+
+    <div class="col-md-2">
+    {{form.line_four|as_crispy_field}}
+    {{form.line_four_description|as_crispy_field}}
+    {{form.line_four_quantity|as_crispy_field}}
+    {{form.line_four_unit_price|as_crispy_field}}
+    {{form.line_four_total_price|as_crispy_field}}
+
+    
+  </div>
+
+    <div class="col-md-2">
+    {{form.line_five|as_crispy_field}}
+    {{form.line_five_description|as_crispy_field}}
+    {{form.line_five_quantity|as_crispy_field}}
+    {{form.line_five_unit_price|as_crispy_field}}
+    {{form.line_five_total_price|as_crispy_field}}
+
+    
+  </div>
+
+
+
+
+
+</div><!--mwisho wa row kubwa---->
+
+
+  
+
+</div>
+
+
+<div style="background-color: yellow;">
+
+
+<div class="row">
+
+  <div class="col-md-2">
+    {{form.line_six|as_crispy_field}}
+    {{form.line_six_description|as_crispy_field}}
+    {{form.line_six_quantity|as_crispy_field}}
+    {{form.line_six_unit_price|as_crispy_field}}
+    {{form.line_six_total_price|as_crispy_field}}
+
+    
+  </div>
+
+    <div class="col-md-2">
+    {{form.line_seven|as_crispy_field}}
+    {{form.line_seven_description|as_crispy_field}}
+    {{form.line_seven_quantity|as_crispy_field}}
+    {{form.line_seven_unit_price|as_crispy_field}}
+    {{form.line_seven_total_price|as_crispy_field}}
+
+    
+  </div>
+
+    <div class="col-md-2">
+    {{form.line_eight|as_crispy_field}}
+    {{form.line_eight_description|as_crispy_field}}
+    {{form.line_eight_quantity|as_crispy_field}}
+    {{form.line_eight_unit_price|as_crispy_field}}
+    {{form.line_eight_total_price|as_crispy_field}}
+
+    
+  </div>
+
+    <div class="col-md-2">
+    {{form.line_nine|as_crispy_field}}
+    {{form.line_nine_description|as_crispy_field}}
+    {{form.line_nine_quantity|as_crispy_field}}
+    {{form.line_nine_unit_price|as_crispy_field}}
+    {{form.line_nine_total_price|as_crispy_field}}
+
+    
+  </div>
+
+    <div class="col-md-2">
+    {{form.line_ten|as_crispy_field}}
+    {{form.line_ten_description|as_crispy_field}}
+    {{form.line_ten_quantity|as_crispy_field}}
+    {{form.line_ten_unit_price|as_crispy_field}}
+    {{form.line_ten_total_price|as_crispy_field}}
+
+    
+  </div>
+
+
+</div><!--mwisho wa row kubwa---->
+
+
+</div>
+
+
+<div class="row">
+
+      <div class="col-md-3">
+            {{form.total|as_crispy_field}}
+
+          </div>
+
+
+            <div class="col-md-3">
+            {{form.accepted|as_crispy_field}}
+
+          </div>
+
+       
+  
+
+</div>
+
+
+
+
+ <button id="more-line" type="button" >Show / Hide More Lines</button>
+     <div style="text-align: center;">
+      
+  <button type="submit" class="btn btn-primary btn-md my-0 p">
+      Submit
+
+  </button>
+
+</div>
+
+
+
+
+
+
+
+</form>
+
+</div>
+
+
+
+
+      </div>
+    
+
+
+          </div>
+  </div>
+</div><!---mwisho wa modal---->
+
+
+<center>
+
+
+ <form action="{% url 'accept_medicine_wazee' querySet.id %}" method="post">
+      {% csrf_token %}
+
+      
+
+<h1>{{form.name|as_crispy_field}}</h1>
+
+<h1 style="font-family: bold;">Total Amount is Tsh: {{querySet.total}}</h1>
+
+
+
+
+
+ 
+
+
+        <div class="row">
+
+     
+
+    <center>      
+<button type="button" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#accept" style="width: 4cm;padding: 10px;border-radius: 10px;margin-top: 2cm;">
+  Accept Medicine
+</button>
+
+</center> 
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="accept" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel"> {{object.line_one}} </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+    <h3>put a tick to accept this payment!!</h3><br>
+
+
+     <div class="col-md-3">
+            {{form.total|as_crispy_field}}
+
+          </div>
+
+          <div class="col-md-3">
+            {{form.paid|as_crispy_field}}
+
+          </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+
+          <div class="form-group">
+                 
+                    
+           <!--      <input type="date" name="date" class="form-control" >--->
+                 
+                </div>
+                <input hidden=true name="line2-id" value="{{object.id}}">
+
+                    
+           <button type="submit" class="btn btn-primary btn-md my-0 p" name="line2" >
+              Accept
+
+
+               </button>
+
+
+      </div>
+    </div>
+  </div>
+</div><!---mwisho wa modal---->
+
+
+
+
+
+
+
+
+
+</div><!--mwisho wa row ya kudisplay total and paid--->
+
+
+
+
+
+</form>
+
+</center>
+
+{% endif %}
+
+</div>
+
+
+
+<!--HII NI KWA AJILI YA KUPRINT RECEIPT ZINAANZIA HAPA ----->
+
+{% if querySet.paid == True %}
+<div style="margin-top: 2cm;">
+<center>
+<a href="{% url 'print_detail_wazee' querySet.id %}" class="btn btn-primary btn-md my-0 p">Print Receipt</a>
+</center>
+</div>
+{% endif %}
+
+</div>
+<!--NA HZO CODES ZA KUPRINT RECEIPT ZINAISHIA HAPA--->
+</body>
+</html>
+{% endblock %}

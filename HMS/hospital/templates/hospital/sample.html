@@ -1,0 +1,294 @@
+{% extends 'hospital/base.html' %}
+{% load static %}
+{% block title %}Home {% endblock %}
+
+
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+<!--date time piccker link--->
+
+     <link href="{% static 'hospital/datetimepicker/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static 'hospital/datetimepicker/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet" media="screen">
+<!--mwisho--->
+
+  
+ <!---jqeury css link---->
+     <link rel="stylesheet" href="{% static 'hospital/jqueryui/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'hospital/jqueryui/jquery-ui.structure.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hospital/jqueryui/jquery-ui.structure.css' %}">
+    <link rel="stylesheet" href="{% static 'hospital/jqueryui/jquery-ui.theme.min.css' %}">
+     <link rel="stylesheet" href="{% static 'hospital/jqueryui/jquery-ui.theme.css' %}">
+
+  
+   
+
+
+  <style>
+    .small-img{
+      width: 70px;
+      height: 70px;
+    }
+    td{
+        font-size: 20px;
+        font-family: bold;
+    }
+    #inputi{
+      background-color: white;
+      border: 2px solid blue;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+    body{
+  background: linear-gradient(90deg, #ff00bf9b 0%, #c6ff6932 43%, #0099ff9d 100%);
+}
+  </style>
+  <script src="{% static 'hospital/jqueryui/external/jquery/jquery.js' %}" type="text/javascript"></script>
+<script src="{% static 'hospital/jqueryui/jquery-ui.js' %}" type="text/javascript"></script>
+<script src="{% static 'hospital/assets/js/myjs.js' %}"></script>
+
+  <link rel="stylesheet" href="{% static 'hospital/assets/js/jquery-ui-1.12.1/jquery-ui.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hospital/assets/js/jquery-ui-1.12.1/jquery-ui.structure.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hospital/assets/js/jquery-ui-1.12.1/jquery-ui.theme.min.css' %}">
+
+<!--jquery code for autocomplete javascriptcode---->
+<script src="{% static 'hospital/jqueryui/external/jquery/jquery.js' %}" type="text/javascript"></script>
+<script src="{% static 'hospital/jqueryui/jquery-ui.js' %}" type="text/javascript"></script>
+
+
+
+
+  <script >
+    $(document).ready(function()
+    {
+      var x;
+      var totalamount=0;
+      $('td:nth-child(3)').each(function()
+      {
+        x=$(this).html();
+        totalamount+=parseInt(x);
+        $('#totamount').text("Tsh." + " " + totalamount + "/=");
+
+      });
+
+    });
+  </script>
+</head>
+<body>
+  <main class="mt-5 pt-4">
+    <div class="container" style="margin-top: 4cm;">
+    
+
+
+
+
+
+<div class="container">
+    <form action="" method="POST" class="form-horizontal">
+      {% csrf_token %}
+        <fieldset>
+
+          <div class="row">
+
+            <div class="col-md-6">
+               <div class="control-group">
+                                <div class="controls input-append date form_datetime" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                                  <label style="color: blue;font-weight: bold;font-size: 15px;">FROM</label>
+
+                    <input size="16" type="text" name="fromdate" id="inputi" value="" readonly style="width: 8cm;padding: 20px;">
+                    <span class="add-on" style="padding: 20px;background-color: white;"><i class="icon-remove" style=""></i></span>
+          <span class="add-on" style="padding: 20px;"><i class="icon-th"></i></span>
+                </div>
+        <input type="hidden" id="dtp_input1" value="" /><br/>
+            </div>
+
+            </div><!--mwisho wa column--->
+
+          
+
+            <div class="col-md-6">
+                <div class="control-group">
+                                <div class="controls input-append date form_datetime" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                                  <label style="color: blue;font-weight: bold;font-size: 15px;">To</label>
+
+                    <input size="16" type="text" name="enddate" id="inputi" value="" readonly style="width: 8cm;padding: 20px;">
+                    <span class="add-on" style="padding: 20px;background-color: white;"><i class="icon-remove" style=""></i></span>
+          <span class="add-on" style="padding: 20px;"><i class="icon-th"></i></span>
+                </div>
+        <input type="hidden" id="dtp_input1" value="" /><br/>
+            </div>
+            </div>
+
+            
+
+          </div>
+                     
+
+             
+
+
+<center>
+  <input type="submit" class="btn btn-primary" value="Search" style="margin-top: 2cm;">
+
+</center>
+
+
+
+
+   
+
+
+
+
+      <section class="mb-4">
+     <div class="table-responsive text-nowrap">
+          
+          <table class="table">
+            <thead>
+              <tr>
+                
+                <th scope="col"> Name</th>
+                
+                <th scope="col">Time</th>
+                 <th scope="col">Total</th>
+
+
+                
+                
+                
+                             </tr>
+            </thead>
+            <tbody>
+                {% for object in queryset %}
+                {% if object.paid == True %}
+                                 
+            <tr>
+                <td>{{object.name}}</td>
+                
+                <td>{{object.time_stamp}}</td>
+                <td>{{object.total}}</td>
+       
+            </tr>
+            {% endif %}
+            
+              {% endfor %}
+
+              <div style="margin-top: 0cm;">
+                <tr>
+                <td colspan="2" style="color: black;font-weight: bold;font-family: bold;font-size: 40px;">TOTAL AMOUNT </td>
+                <td id="totamount" style="color: black;font-weight: bold;font-size: 40px;"></td>
+              </tr>
+              </div>
+
+            </tbody>
+          </table>
+     </div>
+      </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </fieldset>
+
+    </form>
+</div>
+
+<script type="text/javascript" src="{% static 'hospital/datetimepicker/jquery/jquery-1.8.3.min.js' %}" charset="UTF-8"></script>
+<script type="text/javascript" src="{% static 'hospital/datetimepicker/bootstrap/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'hospital/datetimepicker/js/bootstrap-datetimepicker.js' %}" charset="UTF-8"></script>
+<script type="text/javascript" src="{% static 'hospital/datetimepicker/js/locales/bootstrap-datetimepicker.fr.js' %}" charset="UTF-8"></script>
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+    autoclose: 1,
+    todayHighlight: 1,
+    startView: 2,
+    forceParse: 0,
+        showMeridian: 1
+    });
+  $('.form_date').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+    autoclose: 1,
+    todayHighlight: 1,
+    startView: 2,
+    minView: 2,
+    forceParse: 0
+    });
+  $('.form_time').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+    autoclose: 1,
+    todayHighlight: 1,
+    startView: 1,
+    minView: 0,
+    maxView: 1,
+    forceParse: 0
+    });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--jquery code for autocomplete javascriptcode---->
+<script src="{% static 'hospital/jqueryui/external/jquery/jquery.js' %}" type="text/javascript"></script>
+<script src="{% static 'hospital/jqueryui/jquery-ui.js' %}" type="text/javascript"></script>
+
+
+
+
+
+ 
+
+</body>
+</html>
+
+{% endblock %}

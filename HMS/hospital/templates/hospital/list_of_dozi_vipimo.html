@@ -1,0 +1,224 @@
+{% extends 'hospital/base.html' %}
+{% load static %}
+{% block title %}Lists {% endblock %}
+
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+  background: linear-gradient(90deg, #ff00bf9b 0%, #c6ff6932 43%, #0099ff9d 100%);
+}
+  </style>
+</head>
+<body>
+  
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services">
+      <div class="container">
+        <center>
+
+        <div class="section-title">
+          <h2>Hospital Services</h2>
+          </div>
+
+        <div class="row">
+          {% if user.is_superuser %}
+
+          <div class="col-md-3">
+        <div class="icon-box">
+              <div class="icon"><i class="fas fa-heartbeat"></i></div>
+              <h4><a href="{% url 'add_dozi' %}">ADD CHILD DOZI</a></h4>
+          
+          </div>
+            
+          </div>
+
+
+          <div class="col-md-3">
+                 <div class="icon-box">
+              <div class="icon"><i class="fas fa-heartbeat"></i></div>
+              <h4><a href="{% url 'add_kipimo' %}">ADD CHILD KIPIMO</a></h4>
+          
+          </div>
+            
+          </div>
+          {% endif %}
+          <div class="col-md-3">
+             <div class="icon-box">
+              <div class="icon"><i class="fas fa-heartbeat"></i></div>
+              <h4><a href="{% url 'list_dozi' %}">DOZI ZA WATOTO</a></h4>
+          
+          </div>
+            
+          </div>
+          <div class="col-md-3">
+               <div class="icon-box">
+              <div class="icon"><i class="fas fa-heartbeat"></i></div>
+              <h4><a href="{% url 'list_kipimo' %}">VIPIMO VYA WATOTO</a></h4>
+          
+          </div>
+            
+          </div>
+
+        </div><!--mwisho wa row kubwa--->
+
+
+
+
+
+
+        <div class="row">
+          {% if user.is_superuser %}
+
+          <div class="col-md-3">
+        <div class="icon-box">
+              <div class="icon"><i class="fas fa-heartbeat"></i></div>
+              <h4><a href="{% url 'add_dozi_kawaida' %}">ADD NORMAL DOZI</a></h4>
+          
+          </div>
+            
+          </div>
+          <div class="col-md-3">
+                 <div class="icon-box">
+              <div class="icon"><i class="fas fa-heartbeat"></i></div>
+              <h4><a href="{% url 'add_kipimo_kawaida' %}">ADD NORMAL KIPIMO</a></h4>
+          
+          </div>
+            
+          </div>
+          {% endif %}
+          <div class="col-md-3">
+             <div class="icon-box">
+              <div class="icon"><i class="fas fa-heartbeat"></i></div>
+              <h4><a href="{% url 'list_dozi_kawaida' %}">DOZI ZA NORMAL</a></h4>
+          
+          </div>
+            
+          </div>
+          <div class="col-md-3">
+               <div class="icon-box">
+              <div class="icon"><i class="fas fa-heartbeat"></i></div>
+              <h4><a href="{% url 'list_kipimo_kawaida' %}">VIPIMO VYA NORMAL</a></h4>
+          
+          </div>
+            
+          </div>
+
+        </div><!--mwisho wa row kubwa--->
+
+
+
+
+
+
+
+        <div class="row">
+          {% if user.is_superuser %}
+
+          <div class="col-md-3">
+        <div class="icon-box">
+              <div class="icon"><i class="fas fa-heartbeat"></i></div>
+              <h4><a href="{% url 'add_dozi_wazee' %}">ADD ELDERS DOZI</a></h4>
+          
+          </div>
+            
+          </div>
+          <div class="col-md-3">
+                 <div class="icon-box">
+              <div class="icon"><i class="fas fa-heartbeat"></i></div>
+              <h4><a href="{% url 'add_kipimo_wazee' %}">ADD ELDERS KIPIMO</a></h4>
+          
+          </div>
+            
+          </div>
+          {% endif %}
+          <div class="col-md-3">
+             <div class="icon-box">
+              <div class="icon"><i class="fas fa-heartbeat"></i></div>
+              <h4><a href="{% url 'list_dozi_wazee' %}">DOZI ZA ELDERS</a></h4>
+          
+          </div>
+            
+          </div>
+          <div class="col-md-3">
+               <div class="icon-box">
+              <div class="icon"><i class="fas fa-heartbeat"></i></div>
+              <h4><a href="{% url 'list_kipimo_wazee' %}">VIPIMO VYA ELDERS</a></h4>
+          
+          </div>
+            
+          </div>
+
+        </div><!--mwisho wa row kubwa--->
+
+
+
+
+
+
+
+
+
+
+
+        <div class="row">
+          {% if user.is_superuser %}
+
+          <div class="col-md-3">
+        <div class="icon-box">
+              <div class="icon"><i class="fas fa-heartbeat"></i></div>
+              <h4><a href="{% url 'add_dozi_wajawazito' %}">ADD PREGNANCY DOZI</a></h4>
+          
+          </div>
+            
+          </div>
+          <div class="col-md-3">
+                 <div class="icon-box">
+              <div class="icon"><i class="fas fa-heartbeat"></i></div>
+              <h4><a href="{% url 'add_kipimo_wajawazito' %}">ADD PREGNANCY KIPIMO</a></h4>
+          
+          </div>
+            
+          </div>
+          {% endif %}
+          <div class="col-md-3">
+             <div class="icon-box">
+              <div class="icon"><i class="fas fa-heartbeat"></i></div>
+              <h4><a href="{% url 'list_dozi_wajawazito' %}">DOZI ZA PREGNANCY</a></h4>
+          
+          </div>
+            
+          </div>
+          <div class="col-md-3">
+               <div class="icon-box">
+              <div class="icon"><i class="fas fa-heartbeat"></i></div>
+              <h4><a href="{% url 'list_kipimo_wajawazito' %}">VIPIMO VYA PREGNANCY</a></h4>
+          
+          </div>
+            
+          </div>
+
+        </div><!--mwisho wa row kubwa--->
+
+
+</center>
+      </div>
+    </section><!-- End Services Section -->
+
+
+    
+
+
+
+</body>
+</html>
+{% endblock %}

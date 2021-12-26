@@ -1,0 +1,511 @@
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'hospital/assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'hospital/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'hospital/assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'hospital/assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'hospital/assets/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'hospital/assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'hospital/assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+    <link href="{% static 'hospital/assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <style>
+    	.kubwa{
+    		margin: 10px;
+    	}
+    </style>
+</head>
+<body>
+
+	{% if querySet.huduma == 'dawa' %}
+
+
+
+	<div style="font-size: 15px;font-family: bold;" class="kubwa">
+	<center>
+		<h1>Facility Informations</h1>
+<h2>Hospital Name: Dimoso Hospital</h2>
+<ul>
+	<li>Email: juniordimoso8@gmail.com</li>
+	<li>Location: Mbeya Region</li>
+	<li>District: Mbeya Mjini</li>
+</ul>
+
+<h1>Patient Informations</h1>
+<ul>
+	<li>Patient Name: {{querySet.name}}</li>
+	<li>Created at: {{querySet.time_stamp}}</li>
+	<li>Amount Paid: {{querySet.total}}</li>
+	<li>Payment For : {{querySet.huduma}}</li>
+</ul>
+
+
+<table>
+	<thead>
+		<tr>
+		<th>Medicine Name</th>
+		<th>Quantity</th>
+		<th>Total Price</th>
+		</tr>
+	</thead>
+
+	<tbody>
+			{% if querySet.line_one != None %}
+
+		<tr>
+					<td>{{querySet.line_one}}</td>
+			<td>{{querySet.line_one_quantity}}</td>
+			<td>{{querySet.line_one_total_price}}</td>
+						
+		</tr>
+		
+		{% endif %}
+		
+		{% if querySet.line_two != None %}
+
+
+		<tr>
+			
+
+			<td>{{querySet.line_two}}</td>
+
+			{% if querySet.line_two_quantity != 0 %}
+			<td>{{querySet.line_two_quantity}}</td>
+			{% endif %}
+
+			{% if querySet.line_two_total_price != 0 %}
+			<td>{{querySet.line_two_total_price}}</td>
+			{% endif %}
+						
+		</tr>
+		{% endif %}
+		
+
+		{% if querySet.line_three != None %}
+
+
+		<tr>
+			
+
+			<td>{{querySet.line_three}}</td>
+			{% if querySet.line_three_quantity != 0 %}
+			<td>{{querySet.line_three_quantity}}</td>
+			{% endif %}
+              {% if querySet.line_three_total_price != 0 %}
+			<td>{{querySet.line_three_total_price}}</td>
+			{% endif %}
+						
+		</tr>
+
+		{% endif %}
+
+
+			{% if querySet.line_four != None %}
+
+
+		<tr>
+			
+
+			<td>{{querySet.line_four}}</td>
+			{% if querySet.line_four_quantity != 0 %}
+			<td>{{querySet.line_four_quantity}}</td>
+			{% endif %}
+              {% if querySet.line_four_total_price != 0 %}
+			<td>{{querySet.line_four_total_price}}</td>
+			{% endif %}
+						
+		</tr>
+
+		{% endif %}
+
+			{% if querySet.line_five != None %}
+
+
+		<tr>
+			
+
+			<td>{{querySet.line_five}}</td>
+			{% if querySet.line_five_quantity != 0 %}
+			<td>{{querySet.line_five_quantity}}</td>
+			{% endif %}
+              {% if querySet.line_five_total_price != 0 %}
+			<td>{{querySet.line_five_total_price}}</td>
+			{% endif %}
+						
+		</tr>
+
+		{% endif %}
+
+
+			{% if querySet.line_six != None %}
+
+
+		<tr>
+			
+
+			<td>{{querySet.line_six}}</td>
+			{% if querySet.line_six_quantity != 0 %}
+			<td>{{querySet.line_six_quantity}}</td>
+			{% endif %}
+              {% if querySet.line_six_total_price != 0 %}
+			<td>{{querySet.line_six_total_price}}</td>
+			{% endif %}
+						
+		</tr>
+
+		{% endif %}
+
+
+			{% if querySet.line_seven != None %}
+
+
+		<tr>
+			
+
+			<td>{{querySet.line_seven}}</td>
+			{% if querySet.line_seven_quantity != 0 %}
+			<td>{{querySet.line_seven_quantity}}</td>
+			{% endif %}
+              {% if querySet.line_seven_total_price != 0 %}
+			<td>{{querySet.line_seven_total_price}}</td>
+			{% endif %}
+						
+		</tr>
+
+		{% endif %}
+
+
+			{% if querySet.line_eight != None %}
+
+
+		<tr>
+			
+
+			<td>{{querySet.line_eight}}</td>
+			{% if querySet.line_eight_quantity != 0 %}
+			<td>{{querySet.line_eight_quantity}}</td>
+			{% endif %}
+              {% if querySet.line_eight_total_price != 0 %}
+			<td>{{querySet.line_eight_total_price}}</td>
+			{% endif %}
+						
+		</tr>
+
+		{% endif %}
+
+
+			{% if querySet.line_nine != None %}
+
+
+		<tr>
+			
+
+			<td>{{querySet.line_nine}}</td>
+			{% if querySet.line_nine_quantity != 0 %}
+			<td>{{querySet.line_nine_quantity}}</td>
+			{% endif %}
+              {% if querySet.line_nine_total_price != 0 %}
+			<td>{{querySet.line_nine_total_price}}</td>
+			{% endif %}
+						
+		</tr>
+
+		{% endif %}
+
+
+			{% if querySet.line_ten != None %}
+
+
+		<tr>
+			
+
+			<td>{{querySet.line_ten}}</td>
+			{% if querySet.line_ten_quantity != 0 %}
+			<td>{{querySet.line_ten_quantity}}</td>
+			{% endif %}
+              {% if querySet.line_ten_total_price != 0 %}
+			<td>{{querySet.line_ten_total_price}}</td>
+			{% endif %}
+						
+		</tr>
+
+		{% endif %}
+
+	</tbody>
+</table>
+
+<h1>TOTAL AMOUNT:  Tsh.{{querySet.total}}/=</h1>
+
+
+	<h1>PAID = <span style="color: red;font-weight: bold;">{{querySet.paid}}</span></h1>
+
+
+<p>Issued By ____________________________________</p>
+<p>{{querySet.time_stamp}}</p>
+
+</center>
+
+</div>
+
+
+<div style="margin-left: 4cm;">
+	
+
+<button type="button" class="btn btn-primary">
+  PRINT PAGE
+</button>
+
+</div>
+
+{% else %}
+
+
+<!--page kwa ajili yavipimo inaanzia hapa---->
+
+<div style="font-size: 15px;font-family: bold;" class="kubwa">
+	<center>
+		<h1>Facility Informations</h1>
+<h2>Hospital Name: Dimoso Hospital</h2>
+<ul>
+	<li>Email: juniordimoso8@gmail.com</li>
+	<li>Location: Mbeya Region</li>
+	<li>District: Mbeya Mjini</li>
+</ul>
+
+<h1>Patient Informations</h1>
+<ul>
+	<li>Patient Name: {{querySet.name}}</li>
+	<li>Created at: {{querySet.time_stamp}}</li>
+	<li>Amount Paid: {{querySet.total}}</li>
+	<li>Payment For : {{querySet.huduma}}</li>
+</ul>
+
+
+<table>
+	<thead>
+		<tr>
+		<th>Kipimo Type</th>
+		
+		<th>Total Price</th>
+		</tr>
+	</thead>
+
+	<tbody>
+			{% if querySet.line_one != None %}
+
+		<tr>
+					<td>{{querySet.line_one}}</td>
+			
+			<td>{{querySet.line_one_total_price}}</td>
+						
+		</tr>
+		
+		{% endif %}
+		
+		{% if querySet.line_two != None %}
+
+
+		<tr>
+			
+
+			<td>{{querySet.line_two}}</td>
+
+
+			{% if querySet.line_two_total_price != 0 %}
+			<td>{{querySet.line_two_total_price}}</td>
+			{% endif %}
+						
+		</tr>
+		{% endif %}
+		
+
+		{% if querySet.line_three != None %}
+
+
+		<tr>
+			
+
+			<td>{{querySet.line_three}}</td>
+			
+              {% if querySet.line_three_total_price != 0 %}
+			<td>{{querySet.line_three_total_price}}</td>
+			{% endif %}
+						
+		</tr>
+
+		{% endif %}
+
+
+			{% if querySet.line_four != None %}
+
+
+		<tr>
+			
+
+			<td>{{querySet.line_four}}</td>
+			
+              {% if querySet.line_four_total_price != 0 %}
+			<td>{{querySet.line_four_total_price}}</td>
+			{% endif %}
+						
+		</tr>
+
+		{% endif %}
+
+			{% if querySet.line_five != None %}
+
+
+		<tr>
+			
+
+			<td>{{querySet.line_five}}</td>
+			
+              {% if querySet.line_five_total_price != 0 %}
+			<td>{{querySet.line_five_total_price}}</td>
+			{% endif %}
+						
+		</tr>
+
+		{% endif %}
+
+
+			{% if querySet.line_six != None %}
+
+
+		<tr>
+			
+
+			<td>{{querySet.line_six}}</td>
+		
+              {% if querySet.line_six_total_price != 0 %}
+			<td>{{querySet.line_six_total_price}}</td>
+			{% endif %}
+						
+		</tr>
+
+		{% endif %}
+
+
+			{% if querySet.line_seven != None %}
+
+
+		<tr>
+			
+
+			<td>{{querySet.line_seven}}</td>
+			
+              {% if querySet.line_seven_total_price != 0 %}
+			<td>{{querySet.line_seven_total_price}}</td>
+			{% endif %}
+						
+		</tr>
+
+		{% endif %}
+
+
+			{% if querySet.line_eight != None %}
+
+
+		<tr>
+			
+
+			<td>{{querySet.line_eight}}</td>
+			
+              {% if querySet.line_eight_total_price != 0 %}
+			<td>{{querySet.line_eight_total_price}}</td>
+			{% endif %}
+						
+		</tr>
+
+		{% endif %}
+
+
+			{% if querySet.line_nine != None %}
+
+
+		<tr>
+			
+
+			<td>{{querySet.line_nine}}</td>
+			
+              {% if querySet.line_nine_total_price != 0 %}
+			<td>{{querySet.line_nine_total_price}}</td>
+			{% endif %}
+						
+		</tr>
+
+		{% endif %}
+
+
+			{% if querySet.line_ten != None %}
+
+
+		<tr>
+			
+
+			<td>{{querySet.line_ten}}</td>
+		
+              {% if querySet.line_ten_total_price != 0 %}
+			<td>{{querySet.line_ten_total_price}}</td>
+			{% endif %}
+						
+		</tr>
+
+		{% endif %}
+
+	</tbody>
+</table>
+
+<h1>TOTAL AMOUNT:  Tsh.{{querySet.total}}/=</h1>
+
+
+	<h1>PAID = <span style="color: red;font-weight: bold;">{{querySet.paid}}</span></h1>
+
+
+<p>Issued By ____________________________________</p>
+<p>{{querySet.time_stamp}}</p>
+
+</center>
+
+</div>
+
+
+<div style="margin-left: 4cm;">
+	
+
+<button type="button" class="btn btn-primary">
+  PRINT PAGE
+</button>
+
+</div>
+
+
+{% endif %}
+
+
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'hospital/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'hospital/assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'hospital/assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'hospital/assets/vendor/purecounter/purecounter.js' %}"></script>
+  <script src="{% static 'hospital/assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+
+
+
+
+
+
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'hospital/assets/js/main.js' %}"></script>
+</body>
+</html>
